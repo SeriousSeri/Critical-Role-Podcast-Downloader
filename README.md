@@ -76,9 +76,10 @@ Technical Details
         BeautifulSoup (HTML parsing)
         mutagen (ID3 tags)
         feedparser (RSS parsing)
-    For Windows EXE creation, I used:
+    For Windows EXE creation, I used: 
+    pyinstaller --onefile --console scriptname.py
 
-pyinstaller --onefile --console scriptname.py
+
 
 
 **Disclaimer**
