@@ -3,12 +3,16 @@
 This repository contains four scripts (plus pre-built EXEs) to download
 the Critical Role podcasts:
 
-1. **Campaign 1: Vox Machina**  directly from critrole.com
-2. **Campaign 2: The Mighty Nein**  (and the rest) is fetched over the simplecast RSS Feed https://feeds.simplecast.com/LXz4Q9rJ
-  since critrole.com is inconsistent with their Podcast implementation. **Warning:** Campaign 2 Podcasts start with Episode 20!
-   The Episodes prior to that are not available for whatever reasons!
-3. **Campaign 3: Bells Hells** (ongoing, with incremental download support)
-4. **Special Episodes like One-Shots, 4-Sided Dive etc** with automated folder-filtering. YMMV!
+1. **Campaign 1: Vox Machina**  
+    directly from critrole.com
+2. **Campaign 2: The Mighty Nein**  
+    (and the rest) is fetched over the simplecast RSS Feed https://feeds.simplecast.com/LXz4Q9rJ
+    since critrole.com is inconsistent with their Podcast implementation. **Warning:** Campaign 2 Podcasts start with Episode 20!
+    The Episodes prior to that are not available for whatever reasons!
+3. **Campaign 3: Bells Hells** 
+    ongoing, with incremental download support
+4. **Special Episodes like One-Shots, 4-Sided Dive etc** 
+    with automated folder-filtering. YMMV!
 
 ---
 
