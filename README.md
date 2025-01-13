@@ -93,7 +93,9 @@ Technical Details
     For Windows EXE creation, I used: 
         pyinstaller --onefile --console scriptname.py
 
+**Known Issues** 
 
+The ID3 Tag Dates are coupled to the source file attributes, which then tags an C1 episode to 2023 for example.
 
 
 **Disclaimer**
