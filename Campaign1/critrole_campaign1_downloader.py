@@ -12,7 +12,7 @@ from mutagen.id3 import ID3NoHeaderError
 URL_CAMPAIGN1 = "https://critrole.com/campaign-1-podcast/"
 DOWNLOAD_FOLDER = "campaign1_voxmachina"
 
-# User-Agent gegen 403 Block
+# User-Agent to avoid 403 blocks
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -34,10 +34,9 @@ def fetch_campaign1_page():
 def parse_mp3_links(html_text: str) -> list:
     soup = BeautifulSoup(html_text, "html.parser")
     results = []
-    # Alle <a> suchen und prüfen, ob ".mp3" im Link enthalten ist
+    # Find all <a> tags with href containing ".mp3"
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        # statt endswith(".mp3") => ".mp3" in href
         if ".mp3" in href.lower():
             link_text = a.get_text(strip=True)
             if not link_text:
@@ -66,8 +65,21 @@ def main():
 
     print(f"Gefundene Episoden-Links: {len(episodes)}")
     for idx, (episode_title, mp3_url) in enumerate(episodes, start=1):
-        raw_name = f"C1_{episode_title}"
-        filename = sanitize_filename(raw_name) + ".mp3"
+        # Extract episode number and subtitle to format as "C1E<number>_<Subtitle>"
+        match = re.search(r"EP\s*(\d+)\s*(.*)", episode_title, re.IGNORECASE)
+        if match:
+            ep_num = match.group(1)
+            remainder = match.group(2).strip()
+            # Remove any leading non-alphanumeric characters from the subtitle
+            remainder = re.sub(r"^[^a-zA-Z0-9]+", "", remainder)
+            if remainder:
+                standardized_title = f"C1E{ep_num}_{remainder}"
+            else:
+                standardized_title = f"C1E{ep_num}"
+        else:
+            standardized_title = f"C1_{episode_title}"
+
+        filename = sanitize_filename(standardized_title) + ".mp3"
         filepath = os.path.join(DOWNLOAD_FOLDER, filename)
 
         if os.path.exists(filepath):
@@ -76,7 +88,6 @@ def main():
 
         print(f"[{idx}] Lade herunter: {episode_title} => {filename}")
 
-        # HEADERS auch hier, falls die .mp3-Links direkt vom Server angefragt werden
         resp = requests.get(mp3_url, headers=HEADERS, stream=True)
         resp.raise_for_status()
 
@@ -86,7 +97,8 @@ def main():
                     f.write(chunk)
 
         print(f"   -> Fertig: {filepath}")
-        add_id3_tags(filepath, episode_title)
+        # Replace underscores with spaces for the ID3 tag title
+        add_id3_tags(filepath, standardized_title.replace("_", " "))
 
     print("\nAlle Episoden wurden verarbeitet.")
 
