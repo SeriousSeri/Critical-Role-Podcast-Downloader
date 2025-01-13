@@ -7,16 +7,21 @@ the Critical Role podcasts:
 
     directly from critrole.com
 2. **Campaign 2: The Mighty Nein**
-
-    (and the rest) is fetched over the simplecast RSS Feed https://feeds.simplecast.com/LXz4Q9rJ
-    since critrole.com is inconsistent with their Podcast implementation. **Warning:** Campaign 2 Podcasts start with Episode 20!
-    The Episodes prior to that are not available for whatever reasons!
+    
+    The first 19 Episodes are pulled via https://critrole.com/podcast/campaign-2-ep1-ep51-mighty-nein-podcast/ 
+    from C2E20 on they're fetched over the simplecast RSS Feed https://feeds.simplecast.com/LXz4Q9rJ
+    since critrole.com is inconsistent with their Podcast implementation.
 3. **Campaign 3: Bells Hells**
 
-    ongoing, with incremental download support
+    Also fetched via simplecast RSS.
+    The Campaign at present date (13.01.25) is still ongoing, so there is incremental download support.
+    The script will check via .txt file if it has already downloaded Episodes and skip those,
+    therefore you can just re-run it to catch new ones.
 4. **Special Episodes like One-Shots, 4-Sided Dive etc**
-
-    with automated folder-filtering. YMMV!
+    
+    Also fetched via simplecast RSS.
+    With automated folder-filtering. YMMV!
+    Same "memory" behaviour as the C3 script, so you can re-run to fetch new Epidsodes.
 
 ---
 
@@ -51,14 +56,14 @@ the Critical Role podcasts:
 
 ### Requirements
 - Python 3.x
-- `requests`, `beautifulsoup4`, `mutagen` packages
+- `requests`, `beautifulsoup4`, `mutagen`, `feedparser` packages
 
 ### Steps
 1. **Download** the `.py` file you want (e.g., `critrole_campaign1_downloader.py`).
 2. **Install dependencies** (in a terminal):
       pip install requests beautifulsoup4 mutagen feedparser
 3. **Run the Script**: 
-   python critrole_campaign1_downloader.py
+   for example "python critrole_campaign1_downloader.py"
 4. **The episodes will be downloaded into a subfolder (e.g. campaign1_voxmachina).**
 
 **Campaign 3 and Specials** script can be re-run in the future to grab any new episodes without re-downloading old ones.
