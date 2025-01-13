@@ -10,7 +10,8 @@ the Critical Role podcasts:
     
     The first 19 Episodes are pulled via https://critrole.com/podcast/campaign-2-ep1-ep51-mighty-nein-podcast/ 
     from C2E20 on they're fetched over the simplecast RSS Feed https://feeds.simplecast.com/LXz4Q9rJ
-    since critrole.com is inconsistent with their Podcast implementation.
+    since critrole.com is inconsistent with their Podcast implementation and Episodes up to E20 are not available
+    from the feed...
 3. **Campaign 3: Bells Hells**
 
     Also fetched via simplecast RSS.
